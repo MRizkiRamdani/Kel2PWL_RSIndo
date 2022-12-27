@@ -15,6 +15,16 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//data
+Route::get('/', [AdminController::class, 'index'])->middleware('admin');
+
+//crud pegawai
+Route::get('/tambah_pegawai', [PegawaiController::class, 'tambah_pegawai'])->middleware('admin');
+Route::post('/store_pegawai', [PegawaiController::class, 'store_pegawai'])->middleware('admin');
+Route::post('/hapus_pegawai', [PegawaiController::class, 'hapus_pegawai'])->middleware('admin');
+Route::post('/cari_pegawai', [PegawaiController::class, 'cari_pegawai']);
+Route::get('/edit_pegawai/{id}', [PegawaiController::class, 'edit_pegawai']);
+Route::post('/update_pegawai', [PegawaiController::class, 'update_pegawai']);
 
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);

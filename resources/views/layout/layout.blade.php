@@ -58,8 +58,6 @@
 			<img src="https://laravel.spruko.com/dashfox/ltr/assets/img/loader-2.svg" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
-
-        
 		<!-- main-content -->
 		<div class="main-content app-content">
 
