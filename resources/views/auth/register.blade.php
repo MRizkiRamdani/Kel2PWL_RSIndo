@@ -18,14 +18,14 @@
         }
     </style>
 
-    <title>Register | RS Nusa Bangsa</title>
+    <title>Register</title>
   </head>
   <body>
     
     <!-- navbar -->
     <nav class="navbar navbar-dark bg-primary mb-4">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">RS Nusa Bangsa</span>
+        <span class="navbar-brand mb-0 h1">RS Indonesia</span>
       </div>
     </nav>
     <!-- akhir navbar -->

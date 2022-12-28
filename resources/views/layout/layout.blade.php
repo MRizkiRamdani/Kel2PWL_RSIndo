@@ -58,6 +58,29 @@
 			<img src="https://laravel.spruko.com/dashfox/ltr/assets/img/loader-2.svg" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
+
+		<!-- main-sidebar -->
+		<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+		<aside class="app-sidebar">
+			<div class="main-sidebar-header active">
+				<a class="desktop-logo logo-light active" href="#">
+                    <i class="fas fa-bars"></i>
+				</a>
+				</div>
+			</div>
+			<div class="main-sidemenu sidebar-scroll">
+				<ul class="side-menu">
+					<li class="slide">
+						<a class="side-menu__item" href="/"><div class="side-angle1"></div><div class="side-angle2"></div><div class="side-arrow"></div>
+                     <i class="fas fa-users" style="font-size:20px; margin-right:5px"></i>
+						<span class="side-menu__label">Data Pegawai</span></a>
+					</li>
+					</ul>
+					<div class="app-sidefooter">
+					<a class="side-menu__item" href="/logout"><svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><path d="M11,7L9.6,8.4l2.6,2.6H2v2h10.2l-2.6,2.6L11,17l5-5L11,7z M20,19h-8v2h8c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2h-8v2h8V19z"/></g></svg> <span class="side-menu__label">Logout</span></a>
+				</div>
+			</div>
+		</aside>
 		<!-- main-content -->
 		<div class="main-content app-content">
 
