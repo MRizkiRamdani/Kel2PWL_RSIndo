@@ -17,6 +17,15 @@ use App\Http\Controllers\AuthController;
 */
 //data
 Route::get('/', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware('admin');
+
+//CRUD dokter
+Route::get('/tambah_dokter', [DokterController::class, 'tambah_dokter'])->middleware('admin');
+Route::post('/store_dokter', [DokterController::class, 'store_dokter'])->middleware('admin');
+Route::post('/hapus_dokter', [DokterController::class, 'hapus_dokter'])->middleware('admin');
+Route::get('/edit_dokter/{id}', [DokterController::class, 'edit_dokter'])->middleware('admin');
+Route::post('/update_dokter', [DokterController::class, 'update_dokter'])->middleware('admin');
+Route::post('/cari_dokter', [DokterController::class, 'cari_dokter']);
 
 //crud pegawai
 Route::get('/tambah_pegawai', [PegawaiController::class, 'tambah_pegawai'])->middleware('admin');
