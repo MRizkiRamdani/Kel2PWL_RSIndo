@@ -35,6 +35,15 @@ Route::post('/cari_pegawai', [PegawaiController::class, 'cari_pegawai']);
 Route::get('/edit_pegawai/{id}', [PegawaiController::class, 'edit_pegawai']);
 Route::post('/update_pegawai', [PegawaiController::class, 'update_pegawai']);
 
+//crud jadwal praktek
+Route::get('/tambah_jadwal', [JadwalController::class, 'tambah_jadwal'])->middleware('admin');
+Route::post('/store_jadwal', [JadwalController::class, 'store_jadwal'])->middleware('admin');
+Route::post('/hapus_jadwal', [JadwalController::class, 'hapus_jadwal'])->middleware('admin');
+Route::get('/edit_jadwal/{id}', [JadwalController::class, 'edit_jadwal'])->middleware('admin');
+Route::post('/update_jadwal', [JadwalController::class, 'update_jadwal'])->middleware('admin');
+Route::post('/cari_jadwal', [JadwalController::class, 'cari_jadwal']);
+Route::post('/cari_pasien', [PasienController::class, 'cari_pasien']);
+
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/store_register', [AuthController::class, 'store_register']);
