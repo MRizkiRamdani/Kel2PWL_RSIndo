@@ -18,6 +18,10 @@ use App\Http\Controllers\AuthController;
 //data
 Route::get('/', [AdminController::class, 'index'])->middleware('admin');
 Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware('admin');
+Route::get('/jadwal_praktek', [AdminController::class, 'jadwal_praktek'])->middleware('admin');
+Route::get('/data_pasien', [AdminController::class, 'data_pasien'])->middleware('admin');
+
+
 
 //CRUD dokter
 Route::get('/tambah_dokter', [DokterController::class, 'tambah_dokter'])->middleware('admin');
@@ -34,6 +38,14 @@ Route::post('/hapus_pegawai', [PegawaiController::class, 'hapus_pegawai'])->midd
 Route::post('/cari_pegawai', [PegawaiController::class, 'cari_pegawai']);
 Route::get('/edit_pegawai/{id}', [PegawaiController::class, 'edit_pegawai']);
 Route::post('/update_pegawai', [PegawaiController::class, 'update_pegawai']);
+
+//crud pasien
+Route::get('/tambah_pasien', [PasienController::class, 'tambah_pasien'])->middleware('admin');
+Route::post('/store_pasien', [PasienController::class, 'store_pasien'])->middleware('admin');
+Route::post('/hapus_pasien', [PasienController::class, 'hapus_pasien'])->middleware('admin');
+Route::get('/edit_pasien/{id}', [PasienController::class, 'edit_pasien'])->middleware('admin');
+Route::post('/update_pasien', [PasienController::class, 'update_pasien'])->middleware('admin');
+
 
 //crud jadwal praktek
 Route::get('/tambah_jadwal', [JadwalController::class, 'tambah_jadwal'])->middleware('admin');

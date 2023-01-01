@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+<!DOCTYPE html
 <html lang="en">
     <head>
 
@@ -80,10 +79,15 @@
                     <i class="fas fa-user-md" style="font-size:22px; margin-right:10px"></i>
 						<span class="side-menu__label">Data Dokter</span></a>
 					</li>
-                    <li class="slide">
+					<li class="slide">
 						<a class="side-menu__item" href="/jadwal_praktek"><div class="side-angle1"></div><div class="side-angle2"></div><div class="side-arrow"></div>
                     <i class="far fa-calendar-alt" style="font-size:20px; margin-right:12px"></i>
 						<span class="side-menu__label">Jadwal Praktek Dokter</span></a>
+					</li>
+					<li class="slide">
+						<a class="side-menu__item" href="/data_pasien"><div class="side-angle1"></div><div class="side-angle2"></div><div class="side-arrow"></div>
+                    <i class="far fa-calendar-alt" style="font-size:20px; margin-right:12px"></i>
+						<span class="side-menu__label">Data Pasien</span></a>
 					</li>
 					</ul>
 					<div class="app-sidefooter">
