@@ -17,6 +17,17 @@ use App\Http\Controllers\AuthController;
 */
 //data
 Route::get('/', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware('admin');
+Route::get('/jadwal_praktek', [AdminController::class, 'jadwal_praktek'])->middleware('admin');
+Route::get('/data_pasien', [AdminController::class, 'data_pasien'])->middleware('admin');
+
+//CRUD dokter
+Route::get('/tambah_dokter', [DokterController::class, 'tambah_dokter'])->middleware('admin');
+Route::post('/store_dokter', [DokterController::class, 'store_dokter'])->middleware('admin');
+Route::post('/hapus_dokter', [DokterController::class, 'hapus_dokter'])->middleware('admin');
+Route::get('/edit_dokter/{id}', [DokterController::class, 'edit_dokter'])->middleware('admin');
+Route::post('/update_dokter', [DokterController::class, 'update_dokter'])->middleware('admin');
+Route::post('/cari_dokter', [DokterController::class, 'cari_dokter']);
 
 //crud pegawai
 Route::get('/tambah_pegawai', [PegawaiController::class, 'tambah_pegawai'])->middleware('admin');
@@ -25,6 +36,22 @@ Route::post('/hapus_pegawai', [PegawaiController::class, 'hapus_pegawai'])->midd
 Route::post('/cari_pegawai', [PegawaiController::class, 'cari_pegawai']);
 Route::get('/edit_pegawai/{id}', [PegawaiController::class, 'edit_pegawai']);
 Route::post('/update_pegawai', [PegawaiController::class, 'update_pegawai']);
+
+//crud pasien
+Route::get('/tambah_pasien', [PasienController::class, 'tambah_pasien'])->middleware('admin');
+Route::post('/store_pasien', [PasienController::class, 'store_pasien'])->middleware('admin');
+Route::post('/hapus_pasien', [PasienController::class, 'hapus_pasien'])->middleware('admin');
+Route::get('/edit_pasien/{id}', [PasienController::class, 'edit_pasien'])->middleware('admin');
+Route::post('/update_pasien', [PasienController::class, 'update_pasien'])->middleware('admin');
+
+//crud jadwal praktek
+Route::get('/tambah_jadwal', [JadwalController::class, 'tambah_jadwal'])->middleware('admin');
+Route::post('/store_jadwal', [JadwalController::class, 'store_jadwal'])->middleware('admin');
+Route::post('/hapus_jadwal', [JadwalController::class, 'hapus_jadwal'])->middleware('admin');
+Route::get('/edit_jadwal/{id}', [JadwalController::class, 'edit_jadwal'])->middleware('admin');
+Route::post('/update_jadwal', [JadwalController::class, 'update_jadwal'])->middleware('admin');
+Route::post('/cari_jadwal', [JadwalController::class, 'cari_jadwal']);
+Route::post('/cari_pasien', [PasienController::class, 'cari_pasien']);
 
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);
