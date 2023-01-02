@@ -20,6 +20,7 @@ Route::get('/', [AdminController::class, 'index'])->middleware('admin');
 Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware('admin');
 Route::get('/jadwal_praktek', [AdminController::class, 'jadwal_praktek'])->middleware('admin');
 Route::get('/data_pasien', [AdminController::class, 'data_pasien'])->middleware('admin');
+Route::get('/data_rawat', [AdminController::class, 'data_rawat'])->middleware('admin');
 
 //CRUD dokter
 Route::get('/tambah_dokter', [DokterController::class, 'tambah_dokter'])->middleware('admin');
@@ -60,6 +61,14 @@ Route::post('/hapus_tmptidur', [TempatTidurController::class, 'hapus_tmptidur'])
 Route::get('/edit_tmptidur/{id}', [TempatTidurController::class, 'edit_tmptidur'])->middleware('admin');
 Route::post('/update_tmptidur', [TempatTidurController::class, 'update_tmptidur'])->middleware('admin');
 Route::post('/cari_tmptidur', [TempatTidurController::class, 'cari_tmptidur']);
+
+//crud data rawat
+Route::get('/tambah_datarawat', [DataRawatController::class, 'tambah_datarawat'])->middleware('admin');
+Route::post('/store_datarawat', [DataRawatController::class, 'store_datarawat'])->middleware('admin');
+Route::get('/edit_datarawat/{id}', [DataRawatController::class, 'edit_datarawat'])->middleware('admin');
+Route::post('/hapus_datarawat', [DataRawatController::class, 'hapus_datarawat'])->middleware('admin');
+Route::post('/update_datarawat', [DataRawatController::class, 'update_datarawat'])->middleware('admin');
+Route::post('/cari_rawat', [DataRawatController::class, 'cari_rawat']);
 
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);

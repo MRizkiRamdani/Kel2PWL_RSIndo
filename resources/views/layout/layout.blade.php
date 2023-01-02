@@ -1,8 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <meta charset="UTF-8">
         <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -94,6 +92,11 @@
 						<a class="side-menu__item" data-toggle="slide" href="/tempat_tidur"><div class="side-angle1"></div><div class="side-angle2"></div><div class="side-arrow"></div>
                     <i class="fas fa-bed" style="font-size:17px; margin-right:9px"></i>
 						<span class="side-menu__label">Data Tempat Tidur</span></a>
+					</li>
+					<li class="slide">
+						<a class="side-menu__item" data-toggle="slide" href="/data_rawat"><div class="side-angle1"></div><div class="side-angle2"></div><div class="side-arrow"></div>
+                    <i class="fas fa-procedures" style="font-size:17px; margin-right:9px"></i>
+						<span class="side-menu__label">Data Rawat</span></i></a>
 					</li>
 					</ul>
 					<div class="app-sidefooter">
