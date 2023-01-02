@@ -20,6 +20,7 @@ Route::get('/', [AdminController::class, 'index'])->middleware('admin');
 Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware('admin');
 Route::get('/jadwal_praktek', [AdminController::class, 'jadwal_praktek'])->middleware('admin');
 Route::get('/data_pasien', [AdminController::class, 'data_pasien'])->middleware('admin');
+Route::get('/tempat_tidur', [AdminController::class, 'tempat_tidur'])->middleware('admin');
 Route::get('/data_rawat', [AdminController::class, 'data_rawat'])->middleware('admin');
 
 //CRUD dokter
