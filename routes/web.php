@@ -21,8 +21,6 @@ Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware(
 Route::get('/jadwal_praktek', [AdminController::class, 'jadwal_praktek'])->middleware('admin');
 Route::get('/data_pasien', [AdminController::class, 'data_pasien'])->middleware('admin');
 
-
-
 //CRUD dokter
 Route::get('/tambah_dokter', [DokterController::class, 'tambah_dokter'])->middleware('admin');
 Route::post('/store_dokter', [DokterController::class, 'store_dokter'])->middleware('admin');
@@ -46,7 +44,6 @@ Route::post('/hapus_pasien', [PasienController::class, 'hapus_pasien'])->middlew
 Route::get('/edit_pasien/{id}', [PasienController::class, 'edit_pasien'])->middleware('admin');
 Route::post('/update_pasien', [PasienController::class, 'update_pasien'])->middleware('admin');
 
-
 //crud jadwal praktek
 Route::get('/tambah_jadwal', [JadwalController::class, 'tambah_jadwal'])->middleware('admin');
 Route::post('/store_jadwal', [JadwalController::class, 'store_jadwal'])->middleware('admin');
@@ -55,6 +52,14 @@ Route::get('/edit_jadwal/{id}', [JadwalController::class, 'edit_jadwal'])->middl
 Route::post('/update_jadwal', [JadwalController::class, 'update_jadwal'])->middleware('admin');
 Route::post('/cari_jadwal', [JadwalController::class, 'cari_jadwal']);
 Route::post('/cari_pasien', [PasienController::class, 'cari_pasien']);
+
+//crud tempat tidur
+Route::get('/tambah_tmptidur', [TempatTidurController::class, 'tambah_tmptidur'])->middleware('admin');
+Route::post('/store_tmptidur', [TempatTidurController::class, 'store_tmptidur'])->middleware('admin');
+Route::post('/hapus_tmptidur', [TempatTidurController::class, 'hapus_tmptidur'])->middleware('admin');
+Route::get('/edit_tmptidur/{id}', [TempatTidurController::class, 'edit_tmptidur'])->middleware('admin');
+Route::post('/update_tmptidur', [TempatTidurController::class, 'update_tmptidur'])->middleware('admin');
+Route::post('/cari_tmptidur', [TempatTidurController::class, 'cari_tmptidur']);
 
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);
