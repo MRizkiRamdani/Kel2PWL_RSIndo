@@ -71,6 +71,14 @@ Route::post('/hapus_datarawat', [DataRawatController::class, 'hapus_datarawat'])
 Route::post('/update_datarawat', [DataRawatController::class, 'update_datarawat'])->middleware('admin');
 Route::post('/cari_rawat', [DataRawatController::class, 'cari_rawat']);
 
+//crud tindakan 
+Route::get('/tambah_tindakan', [TindakanController::class, 'tambah_tindakan'])->middleware('admin');
+Route::post('/store_tindakan', [TindakanController::class, 'store_tindakan'])->middleware('admin');
+Route::post('/hapus_tindakan', [TindakanController::class, 'hapus_tindakan'])->middleware('admin');
+Route::get('/edit_tindakan/{id}', [TindakanController::class, 'edit_tindakan'])->middleware('admin');
+Route::post('/update_tindakan', [TindakanController::class, 'update_tindakan'])->middleware('admin');
+Route::post('/cari_tindakan', [TindakanController::class, 'cari_tindakan']);
+
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/store_register', [AuthController::class, 'store_register']);
