@@ -20,6 +20,7 @@ Route::get('/', [AdminController::class, 'index'])->middleware('admin');
 Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware('admin');
 Route::get('/jadwal_praktek', [AdminController::class, 'jadwal_praktek'])->middleware('admin');
 Route::get('/data_pasien', [AdminController::class, 'data_pasien'])->middleware('admin');
+Route::get('/tempat_tidur', [AdminController::class, 'tempat_tidur'])->middleware('admin');
 Route::get('/data_rawat', [AdminController::class, 'data_rawat'])->middleware('admin');
 
 //CRUD dokter
@@ -77,6 +78,14 @@ Route::post('/hapus_obat', [ObatPerlengkapanController::class, 'hapus_obat'])->m
 Route::get('/edit_obat/{id}', [ObatPerlengkapanController::class, 'edit_obat'])->middleware('admin');
 Route::post('/update_obat', [ObatPerlengkapanController::class, 'update_obat'])->middleware('admin');
 Route::post('/cari_obat', [ObatPerlengkapanController::class, 'cari_obat']);
+
+//crud tindakan 
+Route::get('/tambah_tindakan', [TindakanController::class, 'tambah_tindakan'])->middleware('admin');
+Route::post('/store_tindakan', [TindakanController::class, 'store_tindakan'])->middleware('admin');
+Route::post('/hapus_tindakan', [TindakanController::class, 'hapus_tindakan'])->middleware('admin');
+Route::get('/edit_tindakan/{id}', [TindakanController::class, 'edit_tindakan'])->middleware('admin');
+Route::post('/update_tindakan', [TindakanController::class, 'update_tindakan'])->middleware('admin');
+Route::post('/cari_tindakan', [TindakanController::class, 'cari_tindakan']);
 
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);
