@@ -70,6 +70,14 @@ Route::post('/hapus_datarawat', [DataRawatController::class, 'hapus_datarawat'])
 Route::post('/update_datarawat', [DataRawatController::class, 'update_datarawat'])->middleware('admin');
 Route::post('/cari_rawat', [DataRawatController::class, 'cari_rawat']);
 
+//crud perlengkapan dan obat 
+Route::get('/tambah_obat', [ObatPerlengkapanController::class, 'tambah_obat'])->middleware('admin');
+Route::post('/store_obat', [ObatPerlengkapanController::class, 'store_obat'])->middleware('admin');
+Route::post('/hapus_obat', [ObatPerlengkapanController::class, 'hapus_obat'])->middleware('admin');
+Route::get('/edit_obat/{id}', [ObatPerlengkapanController::class, 'edit_obat'])->middleware('admin');
+Route::post('/update_obat', [ObatPerlengkapanController::class, 'update_obat'])->middleware('admin');
+Route::post('/cari_obat', [ObatPerlengkapanController::class, 'cari_obat']);
+
 //autentikasi
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/store_register', [AuthController::class, 'store_register']);
