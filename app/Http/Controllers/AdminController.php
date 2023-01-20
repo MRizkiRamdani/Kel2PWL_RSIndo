@@ -6,6 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Doctor;
 use App\Models\Appointment;
+use App\Models\Kamar;
+use App\Models\Rawatinap;
+use App\Models\Visit;
+use App\Models\Rekamedis;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DoctorExcel;
+use App\Exports\KamarExcel;
+use App\Exports\RawatinapExcel;
+use App\Exports\VisitExcel;
+use App\Exports\RekamExcel;
+use App\Exports\AppointExcel;
 
 
 class AdminController extends Controller
@@ -111,7 +123,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    
     public function addkamar()
     {
         return view('admin.addkamar');
@@ -186,7 +197,6 @@ class AdminController extends Controller
         return view('admin.showrawatin', compact('data'));
     }
 
-    
     public function del_pasien($id)
     {
         $data=rawatinap::find($id);
@@ -316,5 +326,35 @@ class AdminController extends Controller
         return $pdf->download('RekamMedis.pdf');
     }
 
+    public function doctorexcel()
+    {
+        return Excel::download(new DoctorExcel, 'Data dokter.xlsx');
+    }
 
+    
+    public function kamarexcel()
+    {
+        return Excel::download(new KamarExcel, 'Data kamar.xlsx');
+    }
+
+    public function rawatinexcel()
+    {
+        return Excel::download(new RawatinapExcel, 'Data Rawat Inap.xlsx');
+    }
+
+    public function visitexcel()
+    {
+        return Excel::download(new VisitExcel, 'Data Visit Dokter.xlsx');
+    }
+
+    public function rekamexcel()
+    {
+        return Excel::download(new RekamExcel, 'Data Rekam Medis.xlsx');
+    }
+
+    public function appointexcel()
+    {
+        return Excel::download(new AppointExcel, 'Data Janji.xlsx');
+    }
+    
 }
