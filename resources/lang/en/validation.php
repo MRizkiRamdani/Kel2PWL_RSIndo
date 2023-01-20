@@ -14,6 +14,7 @@ return [
     */
 
     'accepted' => 'The :attribute must be accepted.',
+    'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
@@ -31,9 +32,12 @@ return [
     ],
     'boolean' => 'The :attribute field must be true or false.',
     'confirmed' => 'The :attribute confirmation does not match.',
+    'current_password' => 'The password is incorrect.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
+    'declined' => 'The :attribute must be declined.',
+    'declined_if' => 'The :attribute must be declined when :other is :value.',
     'different' => 'The :attribute and :other must be different.',
     'digits' => 'The :attribute must be :digits digits.',
     'digits_between' => 'The :attribute must be between :min and :max digits.',
@@ -41,6 +45,7 @@ return [
     'distinct' => 'The :attribute field has a duplicate value.',
     'email' => 'The :attribute must be a valid email address.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
+    'enum' => 'The selected :attribute is invalid.',
     'exists' => 'The selected :attribute is invalid.',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
@@ -51,9 +56,9 @@ return [
         'array' => 'The :attribute must have more than :value items.',
     ],
     'gte' => [
-        'numeric' => 'The :attribute must be greater than or equal :value.',
-        'file' => 'The :attribute must be greater than or equal :value kilobytes.',
-        'string' => 'The :attribute must be greater than or equal :value characters.',
+        'numeric' => 'The :attribute must be greater than or equal to :value.',
+        'file' => 'The :attribute must be greater than or equal to :value kilobytes.',
+        'string' => 'The :attribute must be greater than or equal to :value characters.',
         'array' => 'The :attribute must have :value items or more.',
     ],
     'image' => 'The :attribute must be an image.',
@@ -71,11 +76,12 @@ return [
         'array' => 'The :attribute must have less than :value items.',
     ],
     'lte' => [
-        'numeric' => 'The :attribute must be less than or equal :value.',
-        'file' => 'The :attribute must be less than or equal :value kilobytes.',
-        'string' => 'The :attribute must be less than or equal :value characters.',
+        'numeric' => 'The :attribute must be less than or equal to :value.',
+        'file' => 'The :attribute must be less than or equal to :value kilobytes.',
+        'string' => 'The :attribute must be less than or equal to :value characters.',
         'array' => 'The :attribute must not have more than :value items.',
     ],
+    'mac_address' => 'The :attribute must be a valid MAC address.',
     'max' => [
         'numeric' => 'The :attribute must not be greater than :max.',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
@@ -96,17 +102,19 @@ return [
     'numeric' => 'The :attribute must be a number.',
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
+    'prohibited' => 'The :attribute field is prohibited.',
+    'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
+    'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
+    'prohibits' => 'The :attribute field prohibits :other from being present.',
     'regex' => 'The :attribute format is invalid.',
     'required' => 'The :attribute field is required.',
+    'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'The :attribute field is required when :values is present.',
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'prohibited' => 'The :attribute field is prohibited.',
-    'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
-    'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'same' => 'The :attribute and :other must match.',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
@@ -116,10 +124,10 @@ return [
     ],
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
-    'timezone' => 'The :attribute must be a valid zone.',
+    'timezone' => 'The :attribute must be a valid timezone.',
     'unique' => 'The :attribute has already been taken.',
     'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute format is invalid.',
+    'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*
@@ -134,93 +142,9 @@ return [
     */
 
     'custom' => [
-        'nama' => [
-            'required' => 'Nama wajib diisi',
-            'string' => 'Nama harus berupa huruf'
+        'attribute-name' => [
+            'rule-name' => 'custom-message',
         ],
-        'no_dokter' => [
-            'required' => 'Nomor dokter wajib diisi',
-            'max' => 'Telepon maksimal terdiri dari 20 angka'
-        ],
-        'diterima' => [
-            'required' => 'Tanggal diterima wajib diisi'
-        ],
-        'spesialis' => [
-            'required' => 'Spesialis wajib diisi',
-            'string' => 'Spesialis harus berupa huruf'
-        ],
-        'telepon' => [
-            'required' => 'Telepon wajib diisi',
-            'max' => 'Telepon maksimal terdiri dari 15 angka'
-        ],
-        'alamat' => [
-            'required' => 'Alamat wajib diisi'
-        ],
-        'jam' => [
-            'required' => 'Jam wajib diisi'
-            ],
-        'hari' => [
-            'required' => 'Hari wajib diisi',
-            'string' => 'Nama hari harus berupa huruf'
-            ],
-        'pasien' => [
-            'required_if' => 'Nama pasien wajib diisi jika STATUS TERISI',
-            'required' => 'Pasien wajib diisi',
-            'string' => 'Nama pasien harus terdiri dari huruf'
-            ],
-        'username' => [
-            'required' => 'Username wajib diisi',
-            'alpha_dash' => 'Username harus berupa huruf, angka, underscore, atau strip'
-            ],
-        'password' => [
-            'required' => 'Password wajib diisi',
-            'min' => 'Password minimal terdiri dari 8 karakter',
-            'alpha_dash' => 'Password harus terdiri dari huruf, angka, underscore, atau strip'
-            ],
-        'confirm' => [
-            'same' => 'Konfirmasi password tidak sama dengan password'
-            ],
-        'tipe' => [
-            'required' => 'Tipe wajib diisi',
-            'in' => 'Jenis tipe tidak valid',
-            'string' => 'Tipe harus terdiri dari huruf'
-            ],
-        'tglmasuk' => [
-            'required' => 'Tanggal masuk wajib diisi',
-            ],
-        'jenis' => [
-            'required' => 'Jenis obat wajib diisi',
-            ],
-        'stok' => [
-            'required' => 'Stok obat wajib diisi'
-            ],
-        'tanggal_lahir' => [
-            'required' => 'Tanggal lahir wajib diisi'
-            ],
-        'tanggal_masuk' => [
-            'required' => 'Tanggal masuk wajib diisi'
-            ],
-        'penyakit' => [
-            'required' => 'Nama penyakit harus terdiri dari huruf'
-            ],
-        'no_pegawai' => [
-            'required' => 'No pegawai wajib diisi',
-            'max' => 'No pegawai maksimal 20 angka'
-            ],
-        'jabatan' => [
-            'required' => 'Jabatan wajib diisi'
-            ],
-        'nomor' => [
-            'required' => 'No tempat tidur wajib diisi',
-            'max' => 'No tempat tidur maksimal terdiri dari 3 angka'
-            ],
-        'status' => [
-            'required' => 'Status tempat tidur wajib diisi',
-            'in' => 'Status tempat tidur tidak valid'
-            ],
-        'tindakan' => [
-            'required' => 'Tindakan wajib diisi'
-            ]
     ],
 
     /*

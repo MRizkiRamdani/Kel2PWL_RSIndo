@@ -357,4 +357,5 @@ class AdminController extends Controller
         return Excel::download(new AppointExcel, 'Data Janji.xlsx');
     }
     
+
 }
