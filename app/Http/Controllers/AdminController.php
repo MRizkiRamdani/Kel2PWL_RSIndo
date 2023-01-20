@@ -6,6 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Doctor;
 use App\Models\Appointment;
+use App\Models\Kamar;
+use App\Models\Rawatinap;
+use App\Models\Visit;
+use App\Models\Rekamedis;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DoctorExcel;
+use App\Exports\KamarExcel;
+use App\Exports\RawatinapExcel;
+use App\Exports\VisitExcel;
+use App\Exports\RekamExcel;
+use App\Exports\AppointExcel;
 
 
 class AdminController extends Controller
@@ -111,7 +123,6 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    
     public function addkamar()
     {
         return view('admin.addkamar');
@@ -185,5 +196,166 @@ class AdminController extends Controller
         $data=rawatinap::all();
         return view('admin.showrawatin', compact('data'));
     }
+
+    public function del_pasien($id)
+    {
+        $data=rawatinap::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
+
+    public function updatepasien($id)
+    {
+        $data=rawatinap::find($id);
+        $kamar=kamar::all();
+        return view('admin.update_rawatinap',compact('data','kamar'));
+    }
+
+    public function editpasien(Request $request, $id)
+    {
+        $rawatinap=rawatinap::find($id);
+        $rawatinap->no_identitas=$request->identitas;
+        $rawatinap->nama=$request->name;
+        $rawatinap->phone=$request->phone;
+        $rawatinap->alamat=$request->address;
+        $rawatinap->tgl_lahir=$request->birthday;
+        $rawatinap->gender=$request->gender;
+        $rawatinap->nama_kmr=$request->kamar;
+        $rawatinap->harga_kamar=$request->hargakamar;
+        $rawatinap->gol_drh=$request->goldar;
+        $rawatinap->pekerjaan=$request->work;
+        $rawatinap->warganegara=$request->nation;
+        $rawatinap->save();
+        return redirect()->back()->with('message', 'Rawat Inap Update Successfully');
+    }
+
+    public function inputvisit()
+    {
+        $doctor=doctor::all();
+        $rawatinap=rawatinap::all();
+        return view('admin.addvisit',compact('doctor','rawatinap'));
+    }
+
+    public function upload_visit(Request $request)
+    {
+        $visit=new visit;
+        $visit->nama_dokter=$request->dokter;
+        $visit->nama_pasien=$request->pasien;
+        $visit->tensi=$request->tensi;
+        $visit->penyakit=$request->penyakit;
+        $visit->obat=$request->obat;
+        $visit->perkembangan=$request->progres;
+        $visit->save();
+        return redirect()->back()->with('message', 'Data visit berhasil ditambahkan');
+    }
+
+    public function showvisit()
+    {
+        $data=visit::all();
+        return view('admin.showvisit', compact('data'));
+    }
+
+    public function del_visit($id)
+    {
+        $data=visit::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
+
+    public function updatevisit($id)
+    {
+        $data=visit::find($id);
+        return view('admin.update_visit',compact('data'));
+    }
+
+    public function editvisit(Request $request, $id)
+    {
+        $visit=new visit;
+        $visit->nama_dokter=$request->dokter;
+        $visit->nama_pasien=$request->pasien;
+        $visit->tensi=$request->tensi;
+        $visit->penyakit=$request->penyakit;
+        $visit->obat=$request->obat;
+        $visit->perkembangan=$request->progres;
+        $visit->save();
+        return redirect()->back()->with('message', 'Successfully');
+    }
+
+    public function showrekamedis()
+    {
+        $data=rawatinap::all();
+        return view('admin.showrekamedis', compact('data'));
+    }
+
+    public function detail_rekam($id)
+    {
+        $data=rawatinap::find($id);
+        return view('admin.detailrekam', compact('data'));
+    }
+
+    public function editrekam(Request $request, $id)
+    {
+        $rekamedis=new rekamedis;
+        $rekamedis->no_identitas=$request->identitas;
+        $rekamedis->nama=$request->name;
+        $rekamedis->phone=$request->phone;
+        $rekamedis->alamat=$request->address;
+        $rekamedis->tanggal_lahir=$request->birthday;
+        $rekamedis->gender=$request->gender;
+        $rekamedis->gol_darah=$request->goldar;
+        $rekamedis->durasi=$request->durasi;
+        $rekamedis->nama_kamar=$request->kamar;
+        $rekamedis->harga_kamar=$request->harga;
+        $rekamedis->biaya_rawat=$request->biaya;
+        $rekamedis->total=$request->total;
+        $rekamedis->save();
+        return redirect()->back()->with('message', 'Successfully');
+    }
+
+    public function showprint()
+    {
+        $data=rekamedis::all();
+        return view('admin.pdfrekam', compact('data'));
+    }
+
+    public function pdf()
+    {
+        $data=rekamedis::all();
+        view()->share('data', $data);
+        $pdf=Pdf::LoadView('admin.pdf');
+        return $pdf->download('RekamMedis.pdf');
+    }
+
+    public function doctorexcel()
+    {
+        return Excel::download(new DoctorExcel, 'Data dokter.xlsx');
+    }
+
+    
+    public function kamarexcel()
+    {
+        return Excel::download(new KamarExcel, 'Data kamar.xlsx');
+    }
+
+    public function rawatinexcel()
+    {
+        return Excel::download(new RawatinapExcel, 'Data Rawat Inap.xlsx');
+    }
+
+    public function visitexcel()
+    {
+        return Excel::download(new VisitExcel, 'Data Visit Dokter.xlsx');
+    }
+
+    public function rekamexcel()
+    {
+        return Excel::download(new RekamExcel, 'Data Rekam Medis.xlsx');
+    }
+
+    public function appointexcel()
+    {
+        return Excel::download(new AppointExcel, 'Data Janji.xlsx');
+    }
+    
 
 }

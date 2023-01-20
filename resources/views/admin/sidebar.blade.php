@@ -126,5 +126,44 @@
               <span class="menu-title">Pasien</span>
             </a>
           </li>
+
+          <li class="nav-item nav-category">
+            <span class="nav-link">Visit Dokter</span>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('inputvisit')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-file-document-box"></i>
+              </span>
+              <span class="menu-title">Input Visit</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('showvisit')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-file-document-box"></i>
+              </span>
+              <span class="menu-title">Visit</span>
+            </a>
+          </li>
+          <li class="nav-item nav-category">
+            <span class="nav-link">Data Pasien</span>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('showrekamedis')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-stethoscope"></i>
+              </span>
+              <span class="menu-title">Rekam Medis</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('showprint')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-stethoscope"></i>
+              </span>
+              <span class="menu-title">Print Rekam Medis</span>
+            </a>
+          </li>
         </ul>
       </nav>
