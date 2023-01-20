@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,81 +15,37 @@ use App\Http\Controllers\AuthController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//data
-Route::get('/', [AdminController::class, 'index'])->middleware('admin');
-Route::get('/data_dokter', [AdminController::class, 'data_dokter'])->middleware('admin');
-Route::get('/jadwal_praktek', [AdminController::class, 'jadwal_praktek'])->middleware('admin');
-Route::get('/data_pasien', [AdminController::class, 'data_pasien'])->middleware('admin');
-Route::get('/tempat_tidur', [AdminController::class, 'tempat_tidur'])->middleware('admin');
-Route::get('/data_rawat', [AdminController::class, 'data_rawat'])->middleware('admin');
 
-//CRUD dokter
-Route::get('/tambah_dokter', [DokterController::class, 'tambah_dokter'])->middleware('admin');
-Route::post('/store_dokter', [DokterController::class, 'store_dokter'])->middleware('admin');
-Route::post('/hapus_dokter', [DokterController::class, 'hapus_dokter'])->middleware('admin');
-Route::get('/edit_dokter/{id}', [DokterController::class, 'edit_dokter'])->middleware('admin');
-Route::post('/update_dokter', [DokterController::class, 'update_dokter'])->middleware('admin');
-Route::post('/cari_dokter', [DokterController::class, 'cari_dokter']);
 
-//crud pegawai
-Route::get('/tambah_pegawai', [PegawaiController::class, 'tambah_pegawai'])->middleware('admin');
-Route::post('/store_pegawai', [PegawaiController::class, 'store_pegawai'])->middleware('admin');
-Route::post('/hapus_pegawai', [PegawaiController::class, 'hapus_pegawai'])->middleware('admin');
-Route::post('/cari_pegawai', [PegawaiController::class, 'cari_pegawai']);
-Route::get('/edit_pegawai/{id}', [PegawaiController::class, 'edit_pegawai']);
-Route::post('/update_pegawai', [PegawaiController::class, 'update_pegawai']);
+Route::get('/',[HomeController::class,'index']);
 
-//crud pasien
-Route::get('/tambah_pasien', [PasienController::class, 'tambah_pasien'])->middleware('admin');
-Route::post('/store_pasien', [PasienController::class, 'store_pasien'])->middleware('admin');
-Route::post('/hapus_pasien', [PasienController::class, 'hapus_pasien'])->middleware('admin');
-Route::get('/edit_pasien/{id}', [PasienController::class, 'edit_pasien'])->middleware('admin');
-Route::post('/update_pasien', [PasienController::class, 'update_pasien'])->middleware('admin');
+Route::get('/home',[HomeController::class,'redirect'])->middleware('auth','verified');
 
-//crud jadwal praktek
-Route::get('/tambah_jadwal', [JadwalController::class, 'tambah_jadwal'])->middleware('admin');
-Route::post('/store_jadwal', [JadwalController::class, 'store_jadwal'])->middleware('admin');
-Route::post('/hapus_jadwal', [JadwalController::class, 'hapus_jadwal'])->middleware('admin');
-Route::get('/edit_jadwal/{id}', [JadwalController::class, 'edit_jadwal'])->middleware('admin');
-Route::post('/update_jadwal', [JadwalController::class, 'update_jadwal'])->middleware('admin');
-Route::post('/cari_jadwal', [JadwalController::class, 'cari_jadwal']);
-Route::post('/cari_pasien', [PasienController::class, 'cari_pasien']);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
-//crud tempat tidur
-Route::get('/tambah_tmptidur', [TempatTidurController::class, 'tambah_tmptidur'])->middleware('admin');
-Route::post('/store_tmptidur', [TempatTidurController::class, 'store_tmptidur'])->middleware('admin');
-Route::post('/hapus_tmptidur', [TempatTidurController::class, 'hapus_tmptidur'])->middleware('admin');
-Route::get('/edit_tmptidur/{id}', [TempatTidurController::class, 'edit_tmptidur'])->middleware('admin');
-Route::post('/update_tmptidur', [TempatTidurController::class, 'update_tmptidur'])->middleware('admin');
-Route::post('/cari_tmptidur', [TempatTidurController::class, 'cari_tmptidur']);
+//CRUD Doctor
+Route::get('/add_doctor_view',[AdminController::class,'addview']);
+Route::post('/upload_doctor',[AdminController::class,'upload']);
+Route::get('/showdoctor',[AdminController::class,'showdoctor']);
+Route::get('/del_doctor/{id}',[AdminController::class,'del_doctor']);
+Route::get('/updatedoctor/{id}',[AdminController::class,'updatedoctor']);
+Route::post('/editdoctor/{id}',[AdminController::class,'editdoctor']);
+Route::get('/doctorexcel',[AdminController::class,'doctorexcel']);
 
-//crud data rawat
-Route::get('/tambah_datarawat', [DataRawatController::class, 'tambah_datarawat'])->middleware('admin');
-Route::post('/store_datarawat', [DataRawatController::class, 'store_datarawat'])->middleware('admin');
-Route::get('/edit_datarawat/{id}', [DataRawatController::class, 'edit_datarawat'])->middleware('admin');
-Route::post('/hapus_datarawat', [DataRawatController::class, 'hapus_datarawat'])->middleware('admin');
-Route::post('/update_datarawat', [DataRawatController::class, 'update_datarawat'])->middleware('admin');
-Route::post('/cari_rawat', [DataRawatController::class, 'cari_rawat']);
-
-//crud perlengkapan dan obat 
-Route::get('/tambah_obat', [ObatPerlengkapanController::class, 'tambah_obat'])->middleware('admin');
-Route::post('/store_obat', [ObatPerlengkapanController::class, 'store_obat'])->middleware('admin');
-Route::post('/hapus_obat', [ObatPerlengkapanController::class, 'hapus_obat'])->middleware('admin');
-Route::get('/edit_obat/{id}', [ObatPerlengkapanController::class, 'edit_obat'])->middleware('admin');
-Route::post('/update_obat', [ObatPerlengkapanController::class, 'update_obat'])->middleware('admin');
-Route::post('/cari_obat', [ObatPerlengkapanController::class, 'cari_obat']);
-
-//crud tindakan 
-Route::get('/tambah_tindakan', [TindakanController::class, 'tambah_tindakan'])->middleware('admin');
-Route::post('/store_tindakan', [TindakanController::class, 'store_tindakan'])->middleware('admin');
-Route::post('/hapus_tindakan', [TindakanController::class, 'hapus_tindakan'])->middleware('admin');
-Route::get('/edit_tindakan/{id}', [TindakanController::class, 'edit_tindakan'])->middleware('admin');
-Route::post('/update_tindakan', [TindakanController::class, 'update_tindakan'])->middleware('admin');
-Route::post('/cari_tindakan', [TindakanController::class, 'cari_tindakan']);
-
-//autentikasi
-Route::get('/register', [AuthController::class, 'register']);
-Route::post('/store_register', [AuthController::class, 'store_register']);
-Route::get('/login', [AuthController::class, 'login']);
-Route::post('/store_login', [AuthController::class, 'store_login']);
-Route::get('/logout', [AuthController::class, 'logout']);
+//CRUD Appointment
+Route::post('/appointment',[HomeController::class,'appointment']);
+Route::get('/myappointment',[HomeController::class,'myappointment']);
+Route::get('/delete_appoint/{id}',[HomeController::class,'delete_appoint']);
+Route::get('/showappointment',[AdminController::class,'showappointment']);
+Route::get('/approve/{id}',[AdminController::class,'approve']);
+Route::get('/canceled/{id}',[AdminController::class,'canceled']);
+Route::get('/delete_appoint/{id}',[AdminController::class,'delete_appoint']);
+Route::get('/appointexcel',[AdminController::class,'appointexcel']);
