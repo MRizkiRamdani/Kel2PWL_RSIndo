@@ -49,3 +49,22 @@ Route::get('/approve/{id}',[AdminController::class,'approve']);
 Route::get('/canceled/{id}',[AdminController::class,'canceled']);
 Route::get('/delete_appoint/{id}',[AdminController::class,'delete_appoint']);
 Route::get('/appointexcel',[AdminController::class,'appointexcel']);
+
+
+//CRUD Kamar
+Route::get('/addkamar',[AdminController::class,'addkamar']);
+Route::post('/upload_kamar',[AdminController::class,'upload_kamar']);
+Route::get('/showkamar',[AdminController::class,'showkamar']);
+Route::get('/del_kamar/{id}',[AdminController::class,'del_kamar']);
+Route::get('/updatekamar/{id}',[AdminController::class,'updatekamar']);
+Route::post('/editkamar/{id}',[AdminController::class,'editkamar']);
+Route::get('/kamarexcel',[AdminController::class,'kamarexcel']);
+
+//CRUD rawat inap
+Route::get('/addrawatin',[AdminController::class,'addrawatin']);
+Route::post('/upload_rawat',[AdminController::class,'upload_rawat']);
+Route::get('/showrawatin',[AdminController::class,'showrawatin']);
+Route::get('/del_pasien/{id}',[AdminController::class,'del_pasien']);
+Route::get('/updatepasien/{id}',[AdminController::class,'updatepasien']);
+Route::post('/editpasien/{id}',[AdminController::class,'editpasien']);
+Route::get('/rawatinexcel',[AdminController::class,'rawatinexcel']);
