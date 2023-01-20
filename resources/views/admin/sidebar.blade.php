@@ -83,6 +83,22 @@
               <span class="menu-title">Add Doctors</span>
             </a>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('addkamar')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-seat-flat"></i>
+              </span>
+              <span class="menu-title">Add Kamar</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('addrawatin')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-clipboard-plus"></i>
+              </span>
+              <span class="menu-title">Add Rawat Inap</span>
+            </a>
+          </li>
           <li class="nav-item nav-category">
             <span class="nav-link">Data</span>
           </li>
@@ -92,6 +108,22 @@
                 <i class="mdi mdi-account"></i>
               </span>
               <span class="menu-title">Doctors</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('showkamar')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-seat-flat"></i>
+              </span>
+              <span class="menu-title">Kamar</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('showrawatin')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-clipboard-plus"></i>
+              </span>
+              <span class="menu-title">Pasien</span>
             </a>
           </li>
         </ul>
