@@ -3,50 +3,112 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Doctor;
+use App\Models\Appointment;
+
 
 class AdminController extends Controller
 {
-    
-    public function index(){
-        $pegawai = DB::table('pegawai')->paginate(10);
-       return view('admin.data_pegawai', ['pegawai' => $pegawai]); 
+    public function addview()
+    {
+        if(Auth::id())
+        {
+            if(Auth::user()->role_id==1)
+            {
+                return view ('admin.add_doctor');
+            }
+            else
+            {
+                return redirect()->back();
+            }
+        }
+        else
+        {
+            return redirect('login');
+        }
+        
     }
-    
-    public function data_dokter(){
-        $dokter = DB::table('dokter')->paginate(10);
-        return view('admin.data_dokter', ['dokter' => $dokter]);
+
+    public function upload(Request $request)
+    {
+        $doctor=new doctor;
+        $image=$request->file;
+        $imagename=time().'.'.$image->getClientoriginalExtension();
+        $request->file->move('doctorimage',$imagename);
+        $doctor->image=$imagename;
+        $doctor->name=$request->name;
+        $doctor->phone=$request->number;
+        $doctor->room=$request->room;
+        $doctor->spesialist=$request->spesialist;
+        $doctor->save();
+        return redirect()->back()->with('message', 'Doctor Added Successfully');
     }
-    
-    public function jadwal_praktek(){
-        $jadwal = DB::table('dokter')->join('jadwal', 'jadwal.id_dokter', '=', 'dokter.id')->select('jadwal.*', 'dokter.nama')->paginate(10);
-        return view('admin.jadwal_praktek', ['jadwal' => $jadwal]);
+
+    public function showdoctor()
+    {
+        $data=doctor::all();
+        return view('admin.showdoctor', compact('data'));
     }
-    
-    public function data_pasien(){
-        $pasien = DB::table('pasien')->paginate(10);
-        return view('admin.data_pasien', ['pasien' => $pasien]);
+
+    public function del_doctor($id)
+    {
+        $data=doctor::find($id);
+        $data->delete();
+        return redirect()->back();
     }
-    
-    public function tempat_tidur(){
-        $tmptidur = DB::table('tempat_tidur')->paginate(10);
-        return view('admin.tempat_tidur', ['tmptidur' => $tmptidur]);
+
+    public function updatedoctor($id)
+    {
+        $data=doctor::find($id);
+        return view('admin.update_doctor',compact('data'));
     }
-    
-    public function data_rawat(){
-        $rawatinap = DB::table('data_rawat')->join('pasien', 'data_rawat.id_pasien', '=', 'pasien.id')->select('data_rawat.*', 'pasien.nama')->paginate(10);
-        return view('admin.data_rawat', ['datarawat' => $rawatinap]);
+
+    public function editdoctor(Request $request, $id)
+    {
+        $doctor=doctor::find($id);
+        $doctor->name=$request->name;
+        $doctor->phone=$request->number;
+        $doctor->spesialist=$request->spesialist;
+        $doctor->room=$request->room;
+        $image=$request->file;
+        if($image)
+        {
+            $imagename=time().'.'.$image->getClientoriginalExtension();
+            $request->file->move('doctorimage',$imagename);
+            $doctor->image=$imagename;
+        }
+        $doctor->save();
+        return redirect()->back()->with('message', 'Doctor Update Successfully');
     }
-    
-    public function obat_perlengkapan(){
-        $obat = DB::table('obat')->paginate(10);
-        return view('admin.obat_perlengkapan', ['obat' => $obat]);
+
+    public function showappointment()
+    {
+        $data=appointment::all();
+        return view('admin.showappointment', compact('data'));
     }
-    
-    public function data_tindakan(){
-        $tindakan = DB::table('tindakan')->join('pasien', 'tindakan.id_pasien', '=', 'pasien.id')->select('tindakan.*', 'pasien.nama')->paginate(10);
-        return view('admin.data_tindakan', ['tindakan' => $tindakan]);
+
+    public function approve($id)
+    {
+        $data=appointment::find($id);
+        $data->status='Approved';
+        $data->save();
+        return redirect()->back();
     }
-    
-    
+
+    public function canceled($id)
+    {
+        $data=appointment::find($id);
+        $data->status='Canceled';
+        $data->save();
+        return redirect()->back();
+    }
+
+    public function delete_appoint($id)
+    {
+        $data=appointment::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
+
 }
